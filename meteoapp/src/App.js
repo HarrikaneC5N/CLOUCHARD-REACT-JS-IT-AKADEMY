@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 function App() {
-    const apiKey = "ffb5e80f3d4c4a1f3c43f80a1f43efbb"; // Replace with your actual API key
+    const apiKey = "ffb5e80f3d4c4a1f3c43f80a1f43efbb"; 
     const apiUrl = `https://api.openweathermap.org/data/2.5/`;
     const defaultCities = [
         { name: "Paris" },
