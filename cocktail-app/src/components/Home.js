@@ -7,7 +7,7 @@ function Home() {
     const [searchedCocktails, setSearchedCocktails] = useState([]);
 
     useEffect(() => {
-        // Fetch 9 random cocktails
+        // Fetch 9  cocktails au pif
         const fetchData = async () => {
             const promises = [];
 
@@ -31,7 +31,7 @@ function Home() {
 
     useEffect(() => {
         if (name) {
-            // Fetch cocktails based on the search query
+            // Fetch des cocktail basé sur la query
             fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
                 .then(response => response.json())
                 .then(data => {
@@ -41,7 +41,7 @@ function Home() {
                     console.error("Erreur :", error);
                 });
         } else {
-            // Clear the searched cocktails when there's no search query
+            // Purge du tableau pour la recherche
             setSearchedCocktails([]);
         }
     }, [name]);

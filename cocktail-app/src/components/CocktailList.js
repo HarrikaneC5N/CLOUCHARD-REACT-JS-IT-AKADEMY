@@ -89,27 +89,13 @@ function CocktailList() {
                                 />
                                 <div className="card-body">
                                     <h5 className="card-title">{cocktail.strDrink}</h5>
-                                    {/* Add more cocktail details */}
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
             )}
-            {previewCocktail && (
-                <div className="card preview-card" style={{ width: "200px" }}>
-                    <img
-                        src={previewCocktail.strDrinkThumb}
-                        alt={previewCocktail.strDrink}
-                        className="card-img-top"
-                        style={{ maxHeight: "200px" }}
-                    />
-                    <div className="card-body">
-                        <h5 className="card-title">{previewCocktail.strDrink}</h5>
-                        {/* Add more cocktail details */}
-                    </div>
-                </div>
-            )}
+            
         </div>
     );
 }
