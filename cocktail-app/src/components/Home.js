@@ -7,7 +7,7 @@ function Home() {
     const [searchedCocktails, setSearchedCocktails] = useState([]);
 
     useEffect(() => {
-        // je fetch 9 cocktail au pif
+        // Fetch 9 random cocktails
         const fetchData = async () => {
             const promises = [];
 
@@ -22,7 +22,7 @@ function Home() {
                     setRandomCocktails(cocktails);
                 })
                 .catch(error => {
-                    console.error("Error:", error);
+                    console.error("Erreur :", error);
                 });
         };
 
@@ -38,7 +38,7 @@ function Home() {
                     setSearchedCocktails(data.drinks);
                 })
                 .catch(error => {
-                    console.error("Error:", error);
+                    console.error("Erreur :", error);
                 });
         } else {
             // Clear the searched cocktails when there's no search query
@@ -50,7 +50,7 @@ function Home() {
         <div>
             <input
                 type="text"
-                placeholder="Enter cocktail name"
+                placeholder="Entrez le nom du cocktail"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
@@ -66,7 +66,12 @@ function Home() {
                 randomCocktails.map((cocktail, index) => (
                     index % 3 === 0 && <div key={index} className="row">
                         {randomCocktails.slice(index, index + 3).map((cocktail, subIndex) => (
-                            <div key={subIndex} className="col-md-4">
+                            <Link
+                                key={subIndex}
+                                to={`/cocktails/${cocktail.strDrink}`}
+                                style={{ textDecoration: 'none' }}
+                                className="col-md-4"
+                            >
                                 <div className="card mb-3">
                                     <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className="card-img-top" />
                                     <div className="card-body">
@@ -74,7 +79,7 @@ function Home() {
                                         <p className="card-text">{cocktail.strAlcoholic}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 ))

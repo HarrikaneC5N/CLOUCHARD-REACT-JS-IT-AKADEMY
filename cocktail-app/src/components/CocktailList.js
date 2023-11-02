@@ -10,14 +10,13 @@ function CocktailList() {
 
     useEffect(() => {
         if (!name) {
-            // Display all cocktails when name is not provided (home page)
             fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a`)
                 .then(response => response.json())
                 .then(data => {
                     setCocktailList(data.drinks);
                 })
                 .catch(error => {
-                    console.error("Error:", error);
+                    console.error("Erreur :", error);
                 });
         } else {
             fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
@@ -26,7 +25,7 @@ function CocktailList() {
                     setCocktailDetails(data.drinks[0]);
                 })
                 .catch(error => {
-                    console.error("Error:", error);
+                    console.error("Erreur :", error);
                 });
         }
     }, [name]);
@@ -52,10 +51,24 @@ function CocktailList() {
                                 style={{ maxWidth: "200px" }}
                             />
                             <p>{cocktailDetails.strInstructions}</p>
-                            {/* Add more cocktail details */}
+                            <h3>Ingrédients :</h3>
+                            <ul>
+                                {Array.from({ length: 15 }, (_, i) => i + 1).map((index) => {
+                                    const ingredient = cocktailDetails[`strIngredient${index}`];
+                                    const measure = cocktailDetails[`strMeasure${index}`];
+                                    if (ingredient) {
+                                        return (
+                                            <li key={index}>
+                                                {`${measure} ${ingredient}`}
+                                            </li>
+                                        );
+                                    }
+                                    return null;
+                                })}
+                            </ul>
                         </div>
                     ) : (
-                        <p>Loading cocktail details...</p>
+                        <p>Chargement des détails du cocktail...</p>
                     )}
                 </div>
             ) : (
